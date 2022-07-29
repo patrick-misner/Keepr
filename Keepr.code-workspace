@@ -58,6 +58,10 @@
       "titleBar.inactiveBackground": "#ab93dd99",
       "titleBar.inactiveForeground": "#15202b99"
     },
-    "peacock.color": "#ab93dd"
+    "peacock.color": "#ab93dd",
+    "cSpell.ignoreWords": [
+      "Serv",
+      "keepr"
+    ]
   }
 }

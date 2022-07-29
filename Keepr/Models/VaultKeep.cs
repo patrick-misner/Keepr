@@ -1,12 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
 namespace Keepr.Models
 {
-    public class VaultKeep
-    {
-        
-    }
+  public class VaultKeep
+  {
+    public int Id { get; set; }
+    public int KeepId { get; set; }
+    public int VaultId { get; set; }
+  }
 }
