@@ -56,7 +56,7 @@ namespace Keepr.Controllers
         keepData.CreatorId = userInfo.Id;
         Keep newKeep = _kServ.Create(keepData);
         newKeep.Creator = userInfo;
-        return Ok();
+        return Ok(newKeep);
       }
       catch (Exception e)
       {

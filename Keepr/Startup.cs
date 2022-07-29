@@ -38,6 +38,9 @@ namespace Keepr
 
       services.AddTransient<KeepsRepo>();
       services.AddTransient<KeepsService>();
+
+      services.AddTransient<VaultsRepo>();
+      services.AddTransient<VaultsService>();
     }
 
     private void ConfigureCors(IServiceCollection services)
@@ -46,14 +49,14 @@ namespace Keepr
       {
         options.AddPolicy("CorsDevPolicy", builder =>
               {
-            builder
-                  .AllowAnyMethod()
-                  .AllowAnyHeader()
-                  .AllowCredentials()
-                  .WithOrigins(new string[]{
+                builder
+                      .AllowAnyMethod()
+                      .AllowAnyHeader()
+                      .AllowCredentials()
+                      .WithOrigins(new string[]{
                         "http://localhost:8080", "http://localhost:8081"
+                  });
               });
-          });
       });
     }
 
