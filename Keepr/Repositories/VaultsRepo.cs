@@ -57,7 +57,24 @@ namespace Keepr.Repositories
       a.*
       FROM vaults v
       JOIN accounts a ON a.id = v.creatorId
-      WHERE v.id = @id AND v.isPrivate = false
+      WHERE v.id = @id
+      ";
+      return _db.Query<Vault, Profile, Vault>(sql, (vault, profile) =>
+      {
+        vault.Creator = profile;
+        return vault;
+      }, new { id }).FirstOrDefault();
+    }
+
+    internal Vault GetVaultAuth(int id)
+    {
+      string sql = @"
+      SELECT
+      v.*,
+      a.*
+      FROM vaults v
+      JOIN accounts a ON a.id = v.creatorId
+      WHERE v.id = @id
       ";
       return _db.Query<Vault, Profile, Vault>(sql, (vault, profile) =>
       {

@@ -35,12 +35,12 @@ namespace Keepr.Controllers
       }
     }
     [HttpGet("{id}")]
-    public ActionResult<Vault> GetVault(int id)
+    public async Task<ActionResult<Vault>> GetVault(int id)
     {
       try
       {
-        // Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
-        Vault vault = _vaultServ.GetVault(id);
+        Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
+        Vault vault = _vaultServ.GetVault(id, userInfo?.Id);
         return Ok(vault);
       }
       catch (Exception e)
