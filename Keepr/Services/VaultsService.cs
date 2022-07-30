@@ -74,5 +74,9 @@ namespace Keepr.Services
       return original;
     }
 
+    internal List<Vault> GetVaultsByUser(int id1, string id2)
+    {
+      throw new NotImplementedException();
+    }
   }
 }
