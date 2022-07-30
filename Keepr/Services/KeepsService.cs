@@ -51,9 +51,9 @@ namespace Keepr.Services
 
     }
 
-    internal List<Keep> GetKeepsByUser(int id1, string id2)
+    internal List<Keep> GetKeepsByUser(string id)
     {
-      throw new NotImplementedException();
+      return _kRepo.GetKeepsByUser(id);
     }
 
     internal Keep Delete(int id, string userId)

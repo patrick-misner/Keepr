@@ -63,6 +63,11 @@ namespace Keepr.Services
 
     }
 
+    internal List<Vault> GetVaultsByAccount(string id)
+    {
+      return _repo.GetVaultsByAccount(id);
+    }
+
     internal Vault Delete(int id, string userId)
     {
       Vault original = GetVault(id, userId);
@@ -74,9 +79,9 @@ namespace Keepr.Services
       return original;
     }
 
-    internal List<Vault> GetVaultsByUser(int id1, string id2)
+    internal List<Vault> GetVaultsByUser(string userId)
     {
-      throw new NotImplementedException();
+      return _repo.GetVaultsByUser(userId);
     }
   }
 }

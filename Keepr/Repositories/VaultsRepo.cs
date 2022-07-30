@@ -83,6 +83,23 @@ namespace Keepr.Repositories
       }, new { id }).FirstOrDefault();
     }
 
+    internal List<Vault> GetVaultsByAccount(string id)
+    {
+      string sql = @"
+      SELECT
+      v.*,
+      a.*
+      FROM vaults v
+      JOIN accounts a ON a.id = v.creatorId
+      WHERE v.creatorId = @id
+      ";
+      return _db.Query<Vault, Profile, Vault>(sql, (vault, profile) =>
+      {
+        vault.Creator = profile;
+        return vault;
+      }, new { id }).ToList();
+    }
+
     internal Vault Create(Vault vaultData)
     {
       string sql = @"
@@ -95,6 +112,23 @@ namespace Keepr.Repositories
       int id = _db.ExecuteScalar<int>(sql, vaultData);
       vaultData.Id = id;
       return vaultData;
+    }
+
+    internal List<Vault> GetVaultsByUser(string id)
+    {
+      string sql = @"
+      SELECT
+      v.*,
+      a.*
+      FROM vaults v
+      JOIN accounts a ON a.id = v.creatorId
+      WHERE v.creatorId = @id AND v.isPrivate = false
+      ";
+      return _db.Query<Vault, Profile, Vault>(sql, (vault, profile) =>
+      {
+        vault.Creator = profile;
+        return vault;
+      }, new { id }).ToList();
     }
 
     internal void Edit(Vault original)

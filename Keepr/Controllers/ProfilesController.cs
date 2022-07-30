@@ -12,14 +12,12 @@ namespace Keepr.Controllers
   [Route("api/[controller]")]
   public class ProfilesController : ControllerBase
   {
-    private readonly ProfilesService _pServ;
     private readonly AccountService _aServ;
     private readonly KeepsService _kServ;
     private readonly VaultsService _vServ;
 
-    public ProfilesController(ProfilesService pServ, AccountService aServ, KeepsService kServ, VaultsService vServ)
+    public ProfilesController(AccountService aServ, KeepsService kServ, VaultsService vServ)
     {
-      _pServ = pServ;
       _aServ = aServ;
       _kServ = kServ;
       _vServ = vServ;
@@ -40,12 +38,12 @@ namespace Keepr.Controllers
     }
 
     [HttpGet("{id}/keeps")]
-    public async Task<ActionResult<List<Keep>>> GetKeepsByUser(int id)
+    public async Task<ActionResult<List<Keep>>> GetKeepsByUser(string id)
     {
       try
       {
         Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
-        List<Keep> keeps = _kServ.GetKeepsByUser(id, userInfo?.Id);
+        List<Keep> keeps = _kServ.GetKeepsByUser(id);
         return Ok(keeps);
       }
       catch (Exception e)
@@ -55,12 +53,12 @@ namespace Keepr.Controllers
     }
 
     [HttpGet("{id}/vaults")]
-    public async Task<ActionResult<List<Vault>>> GetVaultsByUser(int id)
+    public async Task<ActionResult<List<Vault>>> GetVaultsByUser(string id)
     {
       try
       {
         Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
-        List<Vault> vaults = _vServ.GetVaultsByUser(id, userInfo?.Id);
+        List<Vault> vaults = _vServ.GetVaultsByUser(id);
         return Ok(vaults);
       }
       catch (Exception e)
