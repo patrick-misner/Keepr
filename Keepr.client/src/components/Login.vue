@@ -16,12 +16,7 @@
         id="authDropdown"
       >
         <div v-if="account.picture">
-          <img
-            :src="account.picture"
-            alt="account photo"
-            height="40"
-            class="rounded"
-          />
+          <img :src="account.picture" alt="account photo" height="40" />
           <span class="mx-3 text-success lighten-30">{{ account.name }}</span>
         </div>
       </div>
@@ -69,6 +64,9 @@ export default {
 
 
 <style lang="scss" scoped>
+img {
+  border-radius: 50%;
+}
 .dropdown-menu {
   user-select: none;
   display: block;
