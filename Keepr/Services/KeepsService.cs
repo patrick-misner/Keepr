@@ -26,6 +26,8 @@ namespace Keepr.Services
       {
         throw new Exception("Invalid Id");
       }
+      found.Views += 1;
+      _kRepo.Edit(found);
       return found;
     }
 
@@ -44,6 +46,11 @@ namespace Keepr.Services
       original.Name = keepData.Name ?? original.Name;
       original.Description = keepData.Description ?? original.Name;
       original.Img = keepData.Img ?? original.Img;
+      if (keepData.CreatorId == original.CreatorId)
+      {
+        keepData.Views = original.Views;
+        keepData.Kept = original.Kept;
+      }
       original.Views = keepData.Views ?? original.Views;
       original.Kept = keepData.Kept ?? original.Kept;
       _kRepo.Edit(original);

@@ -9,20 +9,28 @@ namespace Keepr.Services
   {
     private readonly VaultKeepsRepo _vkRepo;
     private readonly VaultsService _vServ;
+    private readonly KeepsService _kServ;
+    private readonly KeepsRepo _kRepo;
 
-    public VaultKeepsService(VaultKeepsRepo vkRepo, VaultsService vServ)
+    public VaultKeepsService(VaultKeepsRepo vkRepo, VaultsService vServ, KeepsService kServ, KeepsRepo kRepo)
     {
       _vkRepo = vkRepo;
       _vServ = vServ;
+      _kServ = kServ;
+      _kRepo = kRepo;
     }
 
     internal VaultKeep Create(VaultKeep vaultKeepData)
     {
       Vault found = _vServ.GetVault(vaultKeepData.VaultId, vaultKeepData.CreatorId);
+
       if (found.CreatorId != vaultKeepData.CreatorId)
       {
         throw new Exception("You do not own the vault");
       }
+      Keep foundKeep = _kServ.GetKeep(vaultKeepData.KeepId);
+      foundKeep.Kept += 1;
+      _kRepo.Edit(foundKeep);
       return _vkRepo.Create(vaultKeepData);
     }
 
@@ -58,6 +66,9 @@ namespace Keepr.Services
       {
         throw new Exception("Delete failed. You do not own the vault");
       }
+      Keep foundKeep = _kServ.GetKeep(original.KeepId);
+      foundKeep.Kept -= 1;
+      _kRepo.Edit(foundKeep);
       _vkRepo.Delete(id);
       return original;
     }
