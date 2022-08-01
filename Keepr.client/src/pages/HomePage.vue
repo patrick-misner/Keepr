@@ -12,6 +12,7 @@ import Pop from "../utils/Pop";
 import { logger } from "../utils/Logger";
 import { AppState } from "../AppState";
 import { keepsService } from "../services/KeepsService"
+import { router } from "../router";
 export default {
   name: 'Home',
   setup() {

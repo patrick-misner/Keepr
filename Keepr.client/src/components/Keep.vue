@@ -17,6 +17,7 @@
       <span>{{ keep.name }}</span>
     </div>
     <img
+      @click.stop="goToProfile"
       class="profile-img mb-3 mx-2 elevation-2 selectable grow-2"
       :src="keep.creator.picture"
       alt=""
@@ -27,15 +28,23 @@
 <script>
 import { Modal } from "bootstrap"
 import { keepsService } from "../services/KeepsService"
+import { router } from "../router"
+import { AppState } from "../AppState"
 export default {
   props: { keep: { type: Object, required: true } },
-  setup() {
+  setup(props) {
 
     return {
       async activeKeep(keepId) {
         await keepsService.getKeep(keepId)
         Modal.getOrCreateInstance(document.getElementById('active-keep')).show()
-      }
+      },
+      goToProfile() {
+        router.push({
+          name: "Profile",
+          params: { id: props.keep.creatorId }
+        });
+      },
     }
   }
 }
