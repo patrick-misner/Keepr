@@ -17,13 +17,13 @@
 import { computed } from 'vue'
 import { AppState } from './AppState'
 export default {
-  name: 'App',
+  name: "App",
   setup() {
     return {
       appState: computed(() => AppState),
-      keep: computed(() => AppState.activeKeep)
-    }
-  }
+      keep: computed(() => AppState.activeKeep),
+    };
+  },
 }
 </script>
 <style lang="scss">

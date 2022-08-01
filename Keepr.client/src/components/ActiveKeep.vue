@@ -57,18 +57,26 @@
             class="d-flex justify-content-between pb-3 px-0 align-items-center"
           >
             <div>
-              <select class="form-select" aria-label="Select Vault">
+              <select
+                v-if="!keep.vaultKeepId"
+                class="form-select"
+                aria-label="Select Vault"
+              >
                 <option selected>Add to Vault</option>
                 <option v-for="v in vaults" :key="v.id" :value="v.id">
                   {{ v.name }}
                 </option>
               </select>
+
+              <button v-else type="button" class="btn btn-danger">
+                Remove from Vault
+              </button>
             </div>
 
             <div class="align-items-center">
               <i
                 @click="deleteKeep(keep.id)"
-                v-if="keep.creatorId == account.id"
+                v-if="keep.creatorId == account.id && keep.vaultKeepId == false"
                 class="mdi mdi-trash-can fs-3 text-danger selectable"
               ></i>
             </div>

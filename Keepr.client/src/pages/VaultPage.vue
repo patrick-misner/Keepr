@@ -9,7 +9,7 @@
 
     <div class="masonry-frame mt-3 ms-5">
       <div v-for="k in keeps" :key="k.id" class="mb-4">
-        <Keep :keep="k" />
+        <VaultKeep :keep="k" />
       </div>
     </div>
   </div>
@@ -24,25 +24,26 @@ import { logger } from "../utils/Logger"
 import { vaultsService } from "../services/VaultsService"
 import { keepsService } from "../services/KeepsService"
 import { AppState } from "../AppState"
+import VaultKeep from "../components/VaultKeep.vue"
 export default {
-
   setup() {
     const route = useRoute();
     onMounted(async () => {
       try {
-        await vaultsService.getVault(route.params.id)
-        await keepsService.getVaultKeeps(route.params.id)
-      } catch (error) {
-        logger.error(error)
-        Pop.toast(error.message, 'error')
+        await vaultsService.getVault(route.params.id);
+        await keepsService.getVaultKeeps(route.params.id);
       }
-    })
+      catch (error) {
+        logger.error(error);
+        Pop.toast(error.message, "error");
+      }
+    });
     return {
       activeVault: computed(() => AppState.activeVault),
       keeps: computed(() => AppState.activeVaultKeeps)
-    }
-  }
-
+    };
+  },
+  components: { VaultKeep }
 }
 </script>
 
