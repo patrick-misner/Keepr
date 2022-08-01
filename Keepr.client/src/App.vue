@@ -6,9 +6,10 @@
     <div class="container">
       <router-view />
     </div>
+
     <Modal id="active-keep">
       <template #body>
-        <ActiveKeep />
+        <ActiveKeep v-if="keep.id" />
       </template>
     </Modal>
   </main>
@@ -21,7 +22,8 @@ export default {
   name: 'App',
   setup() {
     return {
-      appState: computed(() => AppState)
+      appState: computed(() => AppState),
+      keep: computed(() => AppState.activeKeep)
     }
   }
 }
