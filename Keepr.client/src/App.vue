@@ -3,9 +3,7 @@
     <Navbar />
   </header>
   <main>
-    <div class="container">
-      <router-view />
-    </div>
+    <router-view />
 
     <Modal id="active-keep">
       <template #body>

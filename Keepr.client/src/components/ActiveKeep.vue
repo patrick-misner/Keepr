@@ -57,28 +57,20 @@
             class="d-flex justify-content-between pb-3 px-0 align-items-center"
           >
             <div>
-              <div class="dropdown">
-                <button
-                  class="btn btn-secondary dropdown-toggle"
-                  type="button"
-                  id="dropdownMenuButton1"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  Add to Vault
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                  <li>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                  </li>
-                </ul>
-              </div>
+              <select class="form-select" aria-label="Select Vault">
+                <option selected>Add to Vault</option>
+                <option v-for="v in vaults" :key="v.id" :value="v.id">
+                  {{ v.name }}
+                </option>
+              </select>
             </div>
 
             <div class="align-items-center">
-              <i class="mdi mdi-trash-can fs-3 text-danger"></i>
+              <i
+                @click="deleteKeep(keep.id)"
+                v-if="keep.creatorId == account.id"
+                class="mdi mdi-trash-can fs-3 text-danger selectable"
+              ></i>
             </div>
 
             <div>
@@ -99,10 +91,29 @@
 <script>
 import { computed } from "@vue/reactivity"
 import { AppState } from "../AppState"
+import { logger } from "../utils/Logger"
+import Pop from "../utils/Pop"
+import { keepsService } from "../services/KeepsService"
+import { Modal } from "bootstrap"
 export default {
   setup() {
     return {
-      keep: computed(() => AppState.activeKeep)
+      keep: computed(() => AppState.activeKeep),
+      vaults: computed(() => AppState.myVaults),
+      account: computed(() => AppState.account),
+      async deleteKeep(keepId) {
+        try {
+          if (await Pop.confirm('Are you sure you want to delete this keep ' + this.keep.name + '?')) {
+            await keepsService.deleteKeep(keepId)
+            Modal.getOrCreateInstance(document.getElementById("active-keep")).hide()
+            Pop.toast("Keep deleted", 'success')
+
+          }
+        } catch (error) {
+          logger.error(error)
+          Pop.toast(error.message, 'error')
+        }
+      }
     }
   }
 }

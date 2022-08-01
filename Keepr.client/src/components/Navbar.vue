@@ -2,7 +2,9 @@
   <div class="container-fluid">
     <div class="row bg-primary header align-items-center">
       <div class="col-md-3">
-        <span class="fs-3 px-5">KeppR</span>
+        <router-link :to="{ name: 'Home' }" class="fs-3 px-5 text-white"
+          >KeepR
+        </router-link>
       </div>
       <div class="col-md-6">
         <div class="d-flex justify-content-center">SEARCH BAR</div>

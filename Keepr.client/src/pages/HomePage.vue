@@ -1,7 +1,9 @@
 <template>
-  <div class="masonry-frame mt-5">
-    <div v-for="k in keeps" :key="k.id" class="mb-4">
-      <Keep :keep="k" />
+  <div class="container">
+    <div class="masonry-frame mt-5">
+      <div v-for="k in keeps" :key="k.id" class="mb-4">
+        <Keep :keep="k" />
+      </div>
     </div>
   </div>
 </template>
