@@ -1,6 +1,6 @@
 <template>
   <div
-    @click="goToVault"
+    @click="activeKeep(keep.id)"
     class="
       elevation-2
       rounded
@@ -12,9 +12,9 @@
       fs-6
     "
   >
-    <img class="img-fluid rounded" :src="vault.img" :alt="vault.img" />
+    <img class="img-fluid rounded" :src="keep.img" :alt="keep.img" />
     <div class="text my-3 mx-2 p-1 px-2 bg-grey elevation-2 rounded">
-      <span>{{ vault.name }}</span>
+      <span>{{ keep.name }}</span>
     </div>
   </div>
 </template>
@@ -25,19 +25,13 @@ import { keepsService } from "../services/KeepsService"
 import { router } from "../router"
 import { AppState } from "../AppState"
 export default {
-  props: { vault: { type: Object, required: true } },
+  props: { keep: { type: Object, required: true } },
   setup(props) {
 
     return {
-      async activeVault(keepId) {
+      async activeKeep(keepId) {
         await keepsService.getKeep(keepId)
         Modal.getOrCreateInstance(document.getElementById('active-keep')).show()
-      },
-      goToVault() {
-        router.push({
-          name: "Vault",
-          params: { id: props.vault.id }
-        });
       },
     }
   }

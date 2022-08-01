@@ -14,8 +14,8 @@
           <div class="mx-5 pt-3">
             <h3>{{ profile.name }}</h3>
             <div class="pt-3">
-              <h4>Vaults:</h4>
-              <h4>Keeps:</h4>
+              <h4>Vaults: {{ profileVaults.length }}</h4>
+              <h4>Keeps: {{ profileKeeps.length }}</h4>
             </div>
           </div>
         </div>
@@ -28,8 +28,8 @@
       </div>
     </div>
 
-    <div class="masonry-frame">
-      <div v-for="v in profileVaults" :key="v.id">
+    <div class="masonry-frame mt-3 ms-4">
+      <div v-for="v in profileVaults" :key="v.id" class="mb-4">
         <Vault :vault="v" />
       </div>
     </div>
@@ -37,6 +37,12 @@
     <div class="row mt-5">
       <div class="col-12 mt-5 ps-5">
         <h2>Keeps <i class="mdi mdi-plus text-primary selectable"></i></h2>
+      </div>
+    </div>
+
+    <div class="masonry-frame mt-3 ms-4">
+      <div v-for="k in profileKeeps" :key="k.id" class="mb-4">
+        <ProfileKeep :keep="k" />
       </div>
     </div>
   </div>
@@ -50,6 +56,7 @@ import { logger } from "../utils/Logger";
 import { AppState } from "../AppState";
 import { profilesService } from "../services/ProfilesService"
 import Vault from "../components/Vault.vue"
+import ProfileKeep from "../components/ProfileKeep.vue"
 export default {
   setup() {
     const route = useRoute();
@@ -70,7 +77,7 @@ export default {
       profileVaults: computed(() => AppState.profileVaults)
     };
   },
-  components: { Vault }
+  components: { Vault, ProfileKeep }
 }
 </script>
 
