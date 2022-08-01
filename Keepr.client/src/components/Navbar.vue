@@ -1,9 +1,15 @@
 <template>
-  <div class="row bg-primary header">
-    <div class="col-md-3"></div>
-    <div class="col-md-6"></div>
-    <div class="col-md-3">
-      <Login />
+  <div class="container-fluid">
+    <div class="row bg-primary header align-items-center">
+      <div class="col-md-3">
+        <span class="fs-3 px-5">KeppR</span>
+      </div>
+      <div class="col-md-6">
+        <div class="d-flex justify-content-center">SEARCH BAR</div>
+      </div>
+      <div class="col-md-3 text-end">
+        <Login />
+      </div>
     </div>
   </div>
 </template>

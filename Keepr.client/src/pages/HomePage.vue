@@ -1,12 +1,43 @@
-<template></template>
+<template>
+  <div class="masonry-frame mt-5">
+    <div v-for="k in keeps" :key="k.id" class="mb-4">
+      <Keep :keep="k" />
+    </div>
+  </div>
+</template>
 
 <script>
+import { computed, onMounted } from "@vue/runtime-core"
+import Pop from "../utils/Pop";
+import { logger } from "../utils/Logger";
+import { AppState } from "../AppState";
+import { keepsService } from "../services/KeepsService"
 export default {
-  name: 'Home'
+  name: 'Home',
+  setup() {
+    onMounted(async () => {
+      try {
+        await keepsService.getKeeps()
+      } catch (error) {
+        logger.error(error)
+        Pop.toast(error.message, 'error')
+      }
+
+    });
+    return {
+      keeps: computed(() => AppState.keeps)
+    }
+  }
 }
 </script>
 
 <style scoped lang="scss">
+.masonry-frame {
+  columns: 4;
+  div {
+    break-inside: avoid;
+  }
+}
 .home {
   display: grid;
   height: 80vh;
