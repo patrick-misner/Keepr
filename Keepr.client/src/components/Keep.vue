@@ -1,5 +1,6 @@
 <template>
   <div
+    @click="activeKeep(keep.id)"
     class="
       elevation-2
       rounded
@@ -24,12 +25,17 @@
 </template>
 
 <script>
+import { Modal } from "bootstrap"
+import { keepsService } from "../services/KeepsService"
 export default {
   props: { keep: { type: Object, required: true } },
   setup() {
 
     return {
-
+      async activeKeep(keepId) {
+        await keepsService.getKeep(keepId)
+        Modal.getOrCreateInstance(document.getElementById('active-keep')).show()
+      }
     }
   }
 }

@@ -6,6 +6,11 @@
     <div class="container">
       <router-view />
     </div>
+    <Modal id="active-keep">
+      <template #body>
+        <ActiveKeep />
+      </template>
+    </Modal>
   </main>
 </template>
 
