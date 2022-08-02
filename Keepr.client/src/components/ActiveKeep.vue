@@ -1,8 +1,15 @@
 <template>
   <div class="container-fluid">
+    <button
+      @click="modalClose"
+      type="button"
+      class="btn-close btn btn-light bg-light position-absolute top-0 end-0 p-3"
+      data-bs-dismiss="modal"
+      aria-label="Close"
+    ></button>
     <i></i>
     <div class="row">
-      <div class="col-md-6 ps-0">
+      <div class="col-md-6 px-0">
         <img class="left-side rounded-start" :src="keep.img" :alt="keep.img" />
       </div>
 
@@ -54,9 +61,16 @@
             </div>
           </div>
           <div
-            class="d-flex justify-content-between pb-3 px-0 align-items-center"
+            class="
+              d-flex
+              justify-content-between
+              flex-column flex-md-row
+              pb-3
+              px-0
+              align-items-center
+            "
           >
-            <div>
+            <div class="py-4 py-md-0">
               <form>
                 <select
                   v-if="!keep.vaultKeepId"
@@ -72,7 +86,7 @@
                 </select>
               </form>
               <button
-                v-if="keep.vaultKeepId"
+                v-if="keep.vaultKeepId && account.id == vault.creatorId"
                 type="button"
                 @click="deleteVaultKeep"
                 class="btn btn-danger"
@@ -122,6 +136,7 @@ export default {
       keep: computed(() => AppState.activeKeep),
       vaults: computed(() => AppState.myVaults),
       account: computed(() => AppState.account),
+      vault: computed(() => AppState.activeVault),
       async deleteKeep(keepId) {
         try {
           if (await Pop.confirm('Are you sure you want to delete this keep ' + this.keep.name + '?')) {
@@ -161,6 +176,12 @@ export default {
           Pop.toast(error.message, 'error')
         }
       },
+      modalClose() {
+        addToVault = {
+          vaultId: "Add to Vault"
+        }
+        AppState.activeKeep = {}
+      },
       isKept() {
 
       }
@@ -177,6 +198,15 @@ export default {
   object-fit: cover;
 }
 
+@media only screen and (max-width: 768px) {
+  .left-side {
+    height: 350px;
+    min-height: 350px;
+    width: 100%;
+    object-fit: cover;
+    padding: 0px;
+  }
+}
 .profile-img {
   height: 30px;
 }

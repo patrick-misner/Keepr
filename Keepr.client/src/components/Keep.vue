@@ -6,14 +6,16 @@
       rounded
       selectable
       grow
-      card-img
       wrapper
       text-white text-shadow
+      gradient
       fs-3
     "
+    :style="`background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.01), rgba(0, 0, 0, 0.85) ), url('${keep.img}'); background-size: cover; overflow: hidden;`"
   >
-    <img class="img-fluid rounded" :src="keep.img" :alt="keep.img" />
-    <div class="text my-3 mx-2 p-1 px-2 bg-grey elevation-2 rounded">
+    <img class="rounded img-fluid card-img" :src="keep.img" :alt="keep.img" />
+
+    <div class="text my-3 mx-2 p-1 px-2">
       <span>{{ keep.name }}</span>
     </div>
     <img
@@ -50,7 +52,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped lang="scss">
 .wrapper {
   position: relative;
   width: 100%;
@@ -90,5 +92,9 @@ export default {
 
 .grow-2:hover {
   transform: scale(1.15);
+}
+
+.card-img {
+  visibility: hidden;
 }
 </style>

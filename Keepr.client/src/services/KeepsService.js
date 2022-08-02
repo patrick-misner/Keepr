@@ -17,7 +17,7 @@ class KeepsService {
 
   async createKeep(keepData) {
     const res = await api.post("api/keeps", keepData)
-    AppState.keeps.unshift(res.data)
+    AppState.profileKeeps.push(res.data)
   }
 
   async getVaultKeeps(vaultId) {

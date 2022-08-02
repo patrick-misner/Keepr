@@ -122,4 +122,12 @@ export default {
     break-inside: avoid;
   }
 }
+@media only screen and (max-width: 768px) {
+  .masonry-frame {
+    columns: 2;
+    div {
+      break-inside: avoid;
+    }
+  }
+}
 </style>
