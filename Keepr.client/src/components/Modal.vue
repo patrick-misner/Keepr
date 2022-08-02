@@ -26,19 +26,6 @@
           ></button>
         </div> -->
         <div class="modal-body p-0">
-          <button
-            type="button"
-            class="
-              btn-close btn btn-light
-              bg-light
-              position-absolute
-              top-0
-              end-0
-              p-3
-            "
-            data-bs-dismiss="modal"
-            aria-label="Close"
-          ></button>
           <slot name="body">
             <!--  -->
             <!--  -->

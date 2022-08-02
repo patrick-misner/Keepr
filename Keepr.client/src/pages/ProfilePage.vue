@@ -24,11 +24,23 @@
 
     <div class="row mt-5">
       <div class="col-12 mt-5 ps-5">
-        <h2>Vaults <i class="mdi mdi-plus text-primary selectable"></i></h2>
+        <h2>
+          Vaults
+          <i
+            class="mdi mdi-plus text-primary selectable"
+            @click="triggerVaultForm"
+          ></i>
+        </h2>
       </div>
     </div>
 
-    <div class="masonry-frame mt-3 ms-4">
+    <div v-if="account.id == profile.id" class="masonry-frame mt-3 ms-4">
+      <div v-for="v in myVaults" :key="v.id" class="mb-4">
+        <Vault :vault="v" />
+      </div>
+    </div>
+
+    <div v-else class="masonry-frame mt-3 ms-4">
       <div v-for="v in profileVaults" :key="v.id" class="mb-4">
         <Vault :vault="v" />
       </div>
@@ -36,7 +48,14 @@
 
     <div class="row mt-5">
       <div class="col-12 mt-5 ps-5">
-        <h2>Keeps <i class="mdi mdi-plus text-primary selectable"></i></h2>
+        <h2>
+          Keeps
+
+          <i
+            class="mdi mdi-plus text-primary selectable"
+            @click="triggerKeepForm"
+          ></i>
+        </h2>
       </div>
     </div>
 
@@ -57,6 +76,8 @@ import { AppState } from "../AppState";
 import { profilesService } from "../services/ProfilesService"
 import Vault from "../components/Vault.vue"
 import ProfileKeep from "../components/ProfileKeep.vue"
+import KeepFormVue from "../components/KeepForm.vue";
+import { Modal } from "bootstrap";
 export default {
   setup() {
     const route = useRoute();
@@ -74,7 +95,15 @@ export default {
     return {
       profile: computed(() => AppState.profile),
       profileKeeps: computed(() => AppState.profileKeeps),
-      profileVaults: computed(() => AppState.profileVaults)
+      profileVaults: computed(() => AppState.profileVaults),
+      myVaults: computed(() => AppState.myVaults),
+      account: computed(() => AppState.account),
+      triggerKeepForm() {
+        Modal.getOrCreateInstance(document.getElementById('keep-form')).show()
+      },
+      triggerVaultForm() {
+        Modal.getOrCreateInstance(document.getElementById('vault-form')).show()
+      },
     };
   },
   components: { Vault, ProfileKeep }

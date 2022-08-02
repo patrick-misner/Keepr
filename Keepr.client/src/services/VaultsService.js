@@ -15,6 +15,10 @@ class VaultsService {
     AppState.myVaults = res.data
   }
 
+  async createVault(vaultData) {
+    const res = await api.post("api/vaults", vaultData)
+    AppState.vaults.unshift(res.data)
+  }
   async addKeepToVault(vaultData) {
     const res = await api.post("api/vaultkeeps", vaultData)
     logger.log("Add keep to vault", res.data)
