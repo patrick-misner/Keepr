@@ -23,14 +23,21 @@ namespace Keepr.Services
     internal VaultKeep Create(VaultKeep vaultKeepData)
     {
       Vault found = _vServ.GetVault(vaultKeepData.VaultId, vaultKeepData.CreatorId);
-
       if (found.CreatorId != vaultKeepData.CreatorId)
       {
         throw new Exception("You do not own the vault");
       }
       Keep foundKeep = _kServ.GetKeep(vaultKeepData.KeepId);
-      foundKeep.Kept += 1;
-      _kRepo.Edit(foundKeep);
+      VaultKeep foundVaultKeep = _vkRepo.GetVaultKeepByIds(vaultKeepData);
+      if (foundVaultKeep?.VaultId == vaultKeepData.VaultId && foundVaultKeep?.VaultId == vaultKeepData.VaultId)
+      {
+        throw new Exception("Keep already exists in vault");
+      }
+      if (foundKeep != null)
+      {
+        foundKeep.Kept += 1;
+        _kRepo.Edit(foundKeep);
+      }
       return _vkRepo.Create(vaultKeepData);
     }
 
