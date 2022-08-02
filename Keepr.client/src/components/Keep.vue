@@ -19,6 +19,7 @@
       <span>{{ keep.name }}</span>
     </div>
     <img
+      v-if="$route.name !== 'Profile'"
       @click.stop="goToProfile"
       class="profile-img mb-3 mx-2 elevation-2 selectable grow-2"
       :src="keep.creator.picture"

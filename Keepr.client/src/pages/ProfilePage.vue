@@ -61,7 +61,7 @@
 
     <div class="masonry-frame mt-3 ms-4">
       <div v-for="k in profileKeeps" :key="k.id" class="mb-4">
-        <ProfileKeep :keep="k" />
+        <Keep :keep="k" />
       </div>
     </div>
   </div>
@@ -75,7 +75,6 @@ import { logger } from "../utils/Logger";
 import { AppState } from "../AppState";
 import { profilesService } from "../services/ProfilesService"
 import Vault from "../components/Vault.vue"
-import ProfileKeep from "../components/ProfileKeep.vue"
 import KeepFormVue from "../components/KeepForm.vue";
 import { Modal } from "bootstrap";
 export default {
@@ -106,7 +105,6 @@ export default {
       },
     };
   },
-  components: { Vault, ProfileKeep }
 }
 </script>
 

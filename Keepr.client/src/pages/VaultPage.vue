@@ -22,7 +22,7 @@
 
     <div class="masonry-frame mt-3 ms-md-5">
       <div v-for="k in keeps" :key="k.id" class="mb-4">
-        <VaultKeep :keep="k" />
+        <Keep :keep="k" />
       </div>
     </div>
   </div>
