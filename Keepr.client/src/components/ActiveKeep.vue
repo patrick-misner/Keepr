@@ -137,7 +137,7 @@ export default {
       },
       async deleteVaultKeep(keepId) {
         try {
-          if (await Pop.confirm('Are you sure you want to remove this keep, ' + this.keep.name + 'from this vault?')) {
+          if (await Pop.confirm('Are you sure you want to remove this keep, ' + this.keep.name + ' from this vault?', 'You wont be able to revert this!', 'Yes, remove it!')) {
             await vaultsService.deleteVaultKeep(this.keep.vaultKeepId)
             Modal.getOrCreateInstance(document.getElementById("active-keep")).hide()
             Pop.toast("Keep removed from vault", 'success')
@@ -160,6 +160,9 @@ export default {
           logger.error(error)
           Pop.toast(error.message, 'error')
         }
+      },
+      isKept() {
+
       }
     }
   }

@@ -63,6 +63,11 @@ namespace Keepr.Services
 
     }
 
+    internal List<Vault> GetVaultsByKeep(int id)
+    {
+      throw new NotImplementedException();
+    }
+
     internal List<Vault> GetVaultsByAccount(string id)
     {
       return _repo.GetVaultsByAccount(id);
