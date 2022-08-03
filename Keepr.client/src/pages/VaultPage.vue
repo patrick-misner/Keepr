@@ -45,7 +45,6 @@ import { logger } from "../utils/Logger"
 import { vaultsService } from "../services/VaultsService"
 import { keepsService } from "../services/KeepsService"
 import { AppState } from "../AppState"
-import VaultKeep from "../components/VaultKeep.vue"
 import { router } from "../router"
 export default {
   setup() {
@@ -86,7 +85,6 @@ export default {
       },
     };
   },
-  components: { VaultKeep }
 }
 </script>
 

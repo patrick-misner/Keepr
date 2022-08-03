@@ -21,6 +21,7 @@
               id="floatingInput1"
               placeholder="Keep name..."
               v-model="editable.name"
+              maxlength="20"
               required
             />
             <label for="floatingInput1">Keep Name</label>

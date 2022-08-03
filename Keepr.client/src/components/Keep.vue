@@ -25,7 +25,7 @@
       v-if="$route.name !== 'Profile'"
       @click.stop="goToProfile"
       title="Navigate to Profile"
-      class="profile-img mb-3 mx-2 elevation-2 selectable grow-2"
+      class="profile-img mt-2 mx-2 elevation-2 selectable grow-2"
       :src="keep.creator.picture"
       alt=""
     />
@@ -76,7 +76,7 @@ export default {
   position: absolute;
   z-index: 10;
   bottom: 0;
-  font-size: 15px;
+  font-size: 16px;
 }
 
 @media only screen and (min-width: 768px) {
@@ -84,14 +84,14 @@ export default {
     position: absolute;
     z-index: 10;
     bottom: 0;
-    font-size: 30px;
+    font-size: 18px;
   }
 }
 
 .wrapper .profile-img {
   position: absolute;
   z-index: 10;
-  bottom: 0;
+  top: 0;
   right: 0;
   height: 40px;
   border-radius: 50%;

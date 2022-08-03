@@ -101,7 +101,7 @@
               ></i>
             </div>
 
-            <div>
+            <div @click="goToProfile" class="selectable">
               <img
                 class="profile-img"
                 :src="keep.creator.picture"
@@ -124,6 +124,7 @@ import Pop from "../utils/Pop"
 import { keepsService } from "../services/KeepsService"
 import { Modal } from "bootstrap"
 import { vaultsService } from "../services/VaultsService"
+import { router } from "../router"
 export default {
   setup() {
     const addToVault = ref({
@@ -182,7 +183,14 @@ export default {
       },
       isKept() {
 
-      }
+      },
+      goToProfile() {
+        router.push({
+          name: "Profile",
+          params: { id: this.keep.creatorId }
+        });
+        Modal.getOrCreateInstance(document.getElementById("active-keep")).hide()
+      },
     }
   }
 }

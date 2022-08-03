@@ -28,7 +28,8 @@ export default {
 
     });
     return {
-      keeps: computed(() => AppState.keeps)
+      keeps: computed(() => AppState.keeps),
+      account: computed(() => AppState.account)
     }
   }
 }
