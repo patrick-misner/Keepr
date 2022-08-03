@@ -32,7 +32,9 @@
         <h2>
           Vaults
           <i
+            v-if="account.id == profile.id"
             class="mdi mdi-plus text-primary selectable"
+            title="Add a Vault"
             @click="triggerVaultForm"
           ></i>
         </h2>
@@ -57,7 +59,9 @@
           Keeps
 
           <i
-            class="mdi mdi-plus text-primary selectable"
+            v-if="account.id == profile.id"
+            title="Add a Keep"
+            class="mdi mdi-plus text-primary selectable grow"
             @click="triggerKeepForm"
           ></i>
         </h2>

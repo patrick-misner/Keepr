@@ -1,7 +1,15 @@
 <template>
   <span class="navbar-text">
     <button
-      class="btn selectable text-success lighten-30 text-uppercase my-2 my-lg-0"
+      class="
+        btn
+        selectable
+        text-white
+        mx-2
+        lighten-30
+        text-uppercase
+        my-2 my-lg-0
+      "
       @click="login"
       v-if="!user.isAuthenticated"
     >
@@ -12,7 +20,6 @@
       <div
         class="dropdown-toggle selectable"
         data-bs-toggle="dropdown"
-        aria-expanded="false"
         id="authDropdown"
       >
         <div v-if="account.picture" class="rounded mx-3 login-bg">
@@ -21,17 +28,17 @@
             class=""
             alt="account photo"
             height="40"
+            title="Account menu"
           />
-          <span class="mx-3 text-white lighten-30 name-hide">{{
-            account.name
-          }}</span>
+          <span
+            class="mx-3 text-white lighten-30 name-hide"
+            title="Account menu"
+            >{{ account.name }}</span
+          >
         </div>
       </div>
-      <div
-        class="dropdown-menu p-0 list-group w-100"
-        aria-labelledby="authDropdown"
-      >
-        <router-link :to="{ name: 'Account' }">
+      <div class="dropdown-menu p-0 list-group w-100">
+        <router-link :to="{ name: 'Account' }" title="Home" name="Home">
           <div class="list-group-item list-group-item-action hoverable">
             Manage Account
           </div>
@@ -88,7 +95,7 @@ export default {
 <style scoped lang="scss">
 img {
   height: 45px;
-  border-radius: 5px 0px 0px 5px;
+  border-radius: 3px 0px 0px 3px;
 }
 
 @media only screen and (min-width: 768px) {

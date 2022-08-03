@@ -2,26 +2,33 @@
   <div class="container-fluid">
     <div class="row mt-5">
       <div class="col-12 ps-md-5">
-        <div class="d-flex justify-content-between">
+        <div
+          class="
+            d-flex
+            justify-content-between
+            flex-column flex-md-row
+            align-items-center
+          "
+        >
           <div>
             <h1>{{ activeVault.name }}</h1>
-            <h4 class="pt-2 ps-1">Keeps: {{ keeps.length }}</h4>
           </div>
           <div class="me-md-5 pe-md-5">
             <button
               v-if="account.id == activeVault.creatorId"
               @click="deleteVault"
               type="button"
-              class="btn btn-danger"
+              class="btn btn-danger d-flex"
             >
               Delete Vault
             </button>
           </div>
         </div>
+        <h2 class="pt-2 ps-1 fs-4">Keeps: {{ keeps.length }}</h2>
       </div>
     </div>
 
-    <div class="masonry-frame mt-3 ms-md-5">
+    <div class="masonry-frame mt-3 ms-md-4 ps-md-3">
       <div v-for="k in keeps" :key="k.id" class="mb-4">
         <Keep :keep="k" />
       </div>

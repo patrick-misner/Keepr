@@ -15,15 +15,16 @@
   >
     <img class="rounded img-fluid card-img" :src="keep.img" :alt="keep.img" />
 
-    <div v-if="$route.name == 'Profile'" class="text my-3 mx-2 p-1 px-2 fs-6">
+    <div v-if="$route.name == 'Profile'" class="text my-2 mx-2 p-1 px-2 fs-6">
       <span>{{ keep.name }}</span>
     </div>
-    <div v-else class="text my-3 mx-2 p-1 px-2">
+    <div v-else class="text my-2 mx-2 p-1 px-2">
       <span>{{ keep.name }}</span>
     </div>
     <img
       v-if="$route.name !== 'Profile'"
       @click.stop="goToProfile"
+      title="Navigate to Profile"
       class="profile-img mb-3 mx-2 elevation-2 selectable grow-2"
       :src="keep.creator.picture"
       alt=""
@@ -75,6 +76,16 @@ export default {
   position: absolute;
   z-index: 10;
   bottom: 0;
+  font-size: 15px;
+}
+
+@media only screen and (min-width: 768px) {
+  .wrapper .text {
+    position: absolute;
+    z-index: 10;
+    bottom: 0;
+    font-size: 30px;
+  }
 }
 
 .wrapper .profile-img {

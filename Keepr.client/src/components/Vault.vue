@@ -6,14 +6,14 @@
       rounded
       selectable
       grow
-      card-img
       wrapper
       text-white text-shadow
       fs-6
     "
+    :style="`background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.01), rgba(0, 0, 0, 0.85) ), url('${vault.img}'); background-size: cover; overflow: hidden;`"
   >
-    <img class="img-fluid rounded" :src="vault.img" :alt="vault.img" />
-    <div class="text my-3 mx-2 p-1 px-2 bg-grey elevation-2 rounded">
+    <img class="img-fluid rounded card-img" :src="vault.img" :alt="vault.img" />
+    <div class="text my-2 mx-2 p-1 px-2">
       <span>{{ vault.name }}</span>
     </div>
   </div>
@@ -84,5 +84,9 @@ export default {
 
 .grow-2:hover {
   transform: scale(1.15);
+}
+
+.card-img {
+  visibility: hidden;
 }
 </style>

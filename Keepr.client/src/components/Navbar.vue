@@ -9,11 +9,13 @@
       elevation-2
     "
   >
-    <router-link :to="{ name: 'Home' }">
+    <router-link :to="{ name: 'Home' }" title="Home" name="Home">
       <img
         class="img-fluid header-img p-3"
         src="../assets/img/logo-white.png"
         alt=""
+        title="Home"
+        name="Home"
       />
     </router-link>
 

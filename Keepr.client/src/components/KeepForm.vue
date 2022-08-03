@@ -18,34 +18,34 @@
             <input
               type="text"
               class="form-control"
-              id="floatingInput"
+              id="floatingInput1"
               placeholder="Keep name..."
               v-model="editable.name"
               required
             />
-            <label for="floatingInput">Keep Name</label>
+            <label for="floatingInput1">Keep Name</label>
           </div>
 
           <div class="form-floating mb-3">
             <input
               type="text"
               class="form-control"
-              id="floatingInput"
+              id="floatingInput2"
               placeholder="Img url..."
               v-model="editable.img"
               required
             />
-            <label for="floatingInput">Img Url</label>
+            <label for="floatingInput2">Img Url</label>
           </div>
           <div class="form-floating">
             <textarea
               class="form-control"
               placeholder="Keep description..."
-              id="floatingTextarea"
+              id="floatingTextarea1"
               v-model="editable.description"
               required
             ></textarea>
-            <label for="floatingTextarea">Description</label>
+            <label for="floatingTextarea1">Description</label>
           </div>
 
           <div class="text-center pt-3">

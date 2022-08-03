@@ -100,6 +100,7 @@
                 @click="deleteKeep(keep.id)"
                 v-if="keep.creatorId == account.id && !keep.vaultKeepId"
                 class="mdi mdi-trash-can fs-3 text-danger selectable"
+                title="Delete the Keep"
               ></i>
             </div>
 
