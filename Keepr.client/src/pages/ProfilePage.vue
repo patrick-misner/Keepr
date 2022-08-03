@@ -1,8 +1,8 @@
 <template>
   <div class="container-fluid">
     <div class="row">
-      <div class="col-12 mt-5 px-5">
-        <div class="d-flex">
+      <div class="col-12 mt-5 px-md-5">
+        <div class="d-flex flex-md-row flex-column">
           <div>
             <img
               class="profile-img rounded"
@@ -11,7 +11,7 @@
             />
           </div>
 
-          <div class="mx-5 pt-3">
+          <div class="mx-md-5 pt-3">
             <h3>{{ profile.name }}</h3>
             <div class="pt-3">
               <h4 v-if="account.id != profile.id">
@@ -28,7 +28,7 @@
     </div>
 
     <div class="row mt-5">
-      <div class="col-12 mt-5 ps-5">
+      <div class="col-12 mt-5 ps-md-5">
         <h2>
           Vaults
           <i
@@ -39,20 +39,20 @@
       </div>
     </div>
 
-    <div v-if="account.id == profile.id" class="masonry-frame mt-3 ms-4">
+    <div v-if="account.id == profile.id" class="masonry-frame mt-3 ms-md-4">
       <div v-for="v in myVaults" :key="v.id" class="mb-4">
         <Vault :vault="v" />
       </div>
     </div>
 
-    <div v-else class="masonry-frame mt-3 ms-4">
+    <div v-else class="masonry-frame mt-3 ms-md-4">
       <div v-for="v in profileVaults" :key="v.id" class="mb-4">
         <Vault :vault="v" />
       </div>
     </div>
 
     <div class="row mt-5">
-      <div class="col-12 mt-5 ps-5">
+      <div class="col-12 mt-5 ps-md-5">
         <h2>
           Keeps
 
@@ -64,7 +64,7 @@
       </div>
     </div>
 
-    <div class="masonry-frame mt-3 ms-4">
+    <div class="masonry-frame mt-3 ms-md-4">
       <div v-for="k in profileKeeps" :key="k.id" class="mb-4">
         <Keep :keep="k" />
       </div>

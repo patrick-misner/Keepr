@@ -15,9 +15,16 @@
         aria-expanded="false"
         id="authDropdown"
       >
-        <div v-if="account.picture">
-          <img :src="account.picture" alt="account photo" height="40" />
-          <span class="mx-3 text-success lighten-30">{{ account.name }}</span>
+        <div v-if="account.picture" class="rounded mx-3 login-bg">
+          <img
+            :src="account.picture"
+            class=""
+            alt="account photo"
+            height="40"
+          />
+          <span class="mx-3 text-white lighten-30 name-hide">{{
+            account.name
+          }}</span>
         </div>
       </div>
       <div
@@ -78,9 +85,24 @@ export default {
 </script>
 
 
-<style lang="scss" scoped>
+<style scoped lang="scss">
 img {
-  border-radius: 50%;
+  height: 45px;
+  border-radius: 5px 0px 0px 5px;
+}
+
+@media only screen and (min-width: 768px) {
+  .login-bg {
+    background-color: #505050;
+  }
+}
+@media only screen and (max-width: 768px) {
+  img {
+    border-radius: 50%;
+  }
+  .name-hide {
+    display: none;
+  }
 }
 .dropdown-menu {
   user-select: none;

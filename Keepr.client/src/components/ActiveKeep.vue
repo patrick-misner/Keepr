@@ -10,7 +10,7 @@
     <i></i>
     <div class="row">
       <div class="col-md-6 px-0">
-        <img class="left-side rounded-start" :src="keep.img" :alt="keep.img" />
+        <img class="left-side modal-round" :src="keep.img" :alt="keep.img" />
       </div>
 
       <div class="col-md-6 pt-5">
@@ -105,11 +105,11 @@
 
             <div>
               <img
-                class="rounded profile-img pe-2"
+                class="profile-img"
                 :src="keep.creator.picture"
                 :alt="keep.creator.picture"
               />
-              <span>{{ keep.creator.name }}</span>
+              <span class="ps-1">{{ keep.creator.name }}</span>
             </div>
           </div>
         </div>
@@ -177,7 +177,7 @@ export default {
         }
       },
       modalClose() {
-        addToVault = {
+        addToVault.value = {
           vaultId: "Add to Vault"
         }
         AppState.activeKeep = {}
@@ -190,12 +190,16 @@ export default {
 }
 </script>
 
-<style>
+<style scoped lang="scss">
 .left-side {
   height: 600px;
   min-height: 600px;
   width: 100%;
   object-fit: cover;
+}
+
+.modal-round {
+  border-radius: 5px 0px 0px 5px;
 }
 
 @media only screen and (max-width: 768px) {
@@ -206,8 +210,12 @@ export default {
     object-fit: cover;
     padding: 0px;
   }
+  .modal-round {
+    border-radius: 5px 5px 0px 0px;
+  }
 }
 .profile-img {
   height: 30px;
+  border-radius: 5px 5px 5px 5px;
 }
 </style>

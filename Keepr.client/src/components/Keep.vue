@@ -15,7 +15,10 @@
   >
     <img class="rounded img-fluid card-img" :src="keep.img" :alt="keep.img" />
 
-    <div class="text my-3 mx-2 p-1 px-2">
+    <div v-if="$route.name == 'Profile'" class="text my-3 mx-2 p-1 px-2 fs-6">
+      <span>{{ keep.name }}</span>
+    </div>
+    <div v-else class="text my-3 mx-2 p-1 px-2">
       <span>{{ keep.name }}</span>
     </div>
     <img
@@ -33,6 +36,7 @@ import { Modal } from "bootstrap"
 import { keepsService } from "../services/KeepsService"
 import { router } from "../router"
 import { AppState } from "../AppState"
+import { useRoute } from "vue-router"
 export default {
   props: { keep: { type: Object, required: true } },
   setup(props) {
@@ -40,6 +44,9 @@ export default {
     return {
       async activeKeep(keepId) {
         await keepsService.getKeep(keepId)
+        if (props.keep.vaultKeepId) {
+          AppState.activeKeep.vaultKeepId = props.keep.vaultKeepId
+        }
         Modal.getOrCreateInstance(document.getElementById('active-keep')).show()
       },
       goToProfile() {
