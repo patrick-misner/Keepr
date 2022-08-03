@@ -10,6 +10,7 @@
           <div class="me-md-5 pe-md-5">
             <button
               v-if="account.id == activeVault.creatorId"
+              @click="deleteVault"
               type="button"
               class="btn btn-danger"
             >
@@ -59,7 +60,23 @@ export default {
     return {
       activeVault: computed(() => AppState.activeVault),
       keeps: computed(() => AppState.activeVaultKeeps),
-      account: computed(() => AppState.account)
+      account: computed(() => AppState.account),
+      async deleteVault() {
+        try {
+          if (await Pop.confirm('Are you sure you want to delete this Vault, ' + this.activeVault.name + '?')) {
+            await vaultsService.deleteVault(route.params.id)
+            router.push({
+              name: "Profile",
+              params: { id: this.activeVault.creatorId }
+            });
+            Pop.toast("Vault deleted", 'success')
+
+          }
+        } catch (error) {
+          logger.error(error)
+          Pop.toast(error.message, 'error')
+        }
+      },
     };
   },
   components: { VaultKeep }

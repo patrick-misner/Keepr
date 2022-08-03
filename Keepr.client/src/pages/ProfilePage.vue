@@ -14,7 +14,12 @@
           <div class="mx-5 pt-3">
             <h3>{{ profile.name }}</h3>
             <div class="pt-3">
-              <h4>Vaults: {{ profileVaults.length }}</h4>
+              <h4 v-if="account.id != profile.id">
+                Vaults: {{ profileVaults.length }}
+              </h4>
+              <h4 v-if="account.id == profile.id">
+                Vaults: {{ myVaults.length }}
+              </h4>
               <h4>Keeps: {{ profileKeeps.length }}</h4>
             </div>
           </div>
