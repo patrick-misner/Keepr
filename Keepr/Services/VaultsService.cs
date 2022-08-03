@@ -29,7 +29,7 @@ namespace Keepr.Services
       }
       if (found.IsPrivate == true && found.CreatorId != userId)
       {
-        throw new Exception("Invalid Id");
+        throw new Exception("This vault is private");
       }
       return found;
     }

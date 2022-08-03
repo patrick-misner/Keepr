@@ -42,10 +42,7 @@
                   "
                 >
                   <p class="pb-5">
-                    {{ keep.description }} Lorem ipsum dolor sit amet,
-                    consectetur adipisicing elit. Perspiciatis corrupti modi
-                    impedit libero totam, at porro fugit debitis vitae nihil
-                    provident atque tempore! Debitis, labore.
+                    {{ keep.description }}
                   </p>
                 </div>
 
@@ -73,7 +70,7 @@
             <div class="py-4 py-md-0">
               <form>
                 <select
-                  v-if="!keep.vaultKeepId"
+                  v-if="!keep.vaultKeepId && account.id"
                   v-model="addToVault.vaultId"
                   @change="addKeepToVault"
                   class="form-select"

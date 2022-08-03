@@ -38,11 +38,11 @@
         </div>
       </div>
       <div class="dropdown-menu p-0 list-group w-100">
-        <router-link :to="{ name: 'Account' }" title="Home" name="Home">
+        <!-- <router-link :to="{ name: 'Account' }" title="Home" name="Home">
           <div class="list-group-item list-group-item-action hoverable">
             Manage Account
           </div>
-        </router-link>
+        </router-link> -->
 
         <div
           @click="goToProfile"
@@ -84,7 +84,8 @@ export default {
         router.push({
           name: "Profile",
           params: { id: this.account.id }
-        });
+        })
+        router.go();
       },
     };
   },
