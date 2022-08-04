@@ -136,6 +136,7 @@ export default {
       vaults: computed(() => AppState.myVaults),
       account: computed(() => AppState.account),
       vault: computed(() => AppState.activeVault),
+      myVaultKeeps: computed(() => AppState.myVaultKeeps),
       async deleteKeep(keepId) {
         try {
           if (await Pop.confirm('Are you sure you want to delete this keep ' + this.keep.name + '?')) {
