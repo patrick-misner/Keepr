@@ -89,17 +89,14 @@ namespace Keepr.Repositories
     //   }, new { id }).ToList();
     // }
 
-    internal List<VaultKeep> GetVaultKeepsByKeepId(int id, string userId)
+    internal List<VaultKeep> GetVaultKeepsByKeepId(string userId)
     {
       string sql = @"
       SELECT *
       FROM vaultkeeps
-      WHERE keepId = @id AND creatorId = @userId
+      WHERE creatorId = @userId
       ";
-      return _db.Query<VaultKeep, Account, VaultKeep>(sql, (vaultkeep, account) =>
-      {
-        return vaultkeep;
-      }, new { id }).ToList();
+      return _db.Query<VaultKeep>(sql, new { userId }).ToList();
     }
   }
 }

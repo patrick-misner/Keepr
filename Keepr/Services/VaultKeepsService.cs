@@ -61,9 +61,9 @@ namespace Keepr.Services
       return found;
     }
 
-    internal List<VaultKeep> GetVaultKeepsByKeepId(int id, string userId)
+    internal List<VaultKeep> GetVaultKeepsByKeepId(string userId)
     {
-      return _vkRepo.GetVaultKeepsByKeepId(id, userId);
+      return _vkRepo.GetVaultKeepsByKeepId(userId);
     }
 
     internal VaultKeep Delete(int id, string userId)
