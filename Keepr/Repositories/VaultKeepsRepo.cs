@@ -73,5 +73,33 @@ namespace Keepr.Repositories
       string sql = "DELETE FROM vaultkeeps WHERE id = @id LIMIT 1";
       _db.Execute(sql, new { id });
     }
+
+
+    // !!NOTE Is this possible?
+    // internal List<VaultKeep> GetVaultKeepsByKeepId(int id, string userId)
+    // {
+    //   string sql = @"
+    //   SELECT *
+    //   FROM vaultkeeps
+    //   WHERE keepId = @id AND creatorId = @userId
+    //   ";
+    //   return _db.Query<VaultKeep, Account, VaultKeep>(sql, (vaultkeep, account) =>
+    //   {
+    //     return vaultkeep;
+    //   }, new { id }).ToList();
+    // }
+
+    internal List<VaultKeep> GetVaultKeepsByKeepId(int id, string userId)
+    {
+      string sql = @"
+      SELECT *
+      FROM vaultkeeps
+      WHERE keepId = @id AND creatorId = @userId
+      ";
+      return _db.Query<VaultKeep, Account, VaultKeep>(sql, (vaultkeep, account) =>
+      {
+        return vaultkeep;
+      }, new { id }).ToList();
+    }
   }
 }

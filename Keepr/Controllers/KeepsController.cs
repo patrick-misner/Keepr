@@ -49,20 +49,6 @@ namespace Keepr.Controllers
       }
     }
 
-    [HttpGet("{id}/vaults")]
-    [Authorize]
-    public ActionResult<List<Vault>> GetVaultsByKeep(int id)
-    {
-      try
-      {
-        List<Vault> vaults = _vServ.GetVaultsByKeep(id);
-        return Ok(vaults);
-      }
-      catch (Exception e)
-      {
-        return BadRequest(e.Message);
-      }
-    }
     [HttpPost]
     [Authorize]
     public async Task<ActionResult<Keep>> Create([FromBody] Keep keepData)
