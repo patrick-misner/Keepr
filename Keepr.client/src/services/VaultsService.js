@@ -26,6 +26,9 @@ class VaultsService {
   }
   async addKeepToVault(vaultData) {
     const res = await api.post("api/vaultkeeps", vaultData)
+
+    let vault = AppState.myVaults.find(v => v.id == vaultData.vaultId)
+    vault.isKept = true
     logger.log("Add keep to vault", res.data)
   }
 

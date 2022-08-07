@@ -77,7 +77,12 @@
                   aria-label="Select Vault"
                 >
                   <option selected>Add to Vault</option>
-                  <option v-for="v in vaults" :key="v.id" :value="v.id">
+                  <option
+                    v-for="v in vaults"
+                    :key="v.id"
+                    :value="v.id"
+                    :disabled="v.isKept == true"
+                  >
                     {{ v.name }}
                   </option>
                 </select>

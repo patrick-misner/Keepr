@@ -38,6 +38,7 @@ import { keepsService } from "../services/KeepsService"
 import { router } from "../router"
 import { AppState } from "../AppState"
 import { useRoute } from "vue-router"
+import { logger } from "../utils/Logger"
 export default {
   props: { keep: { type: Object, required: true } },
   setup(props) {
@@ -49,6 +50,7 @@ export default {
           AppState.activeKeep.vaultKeepId = props.keep.vaultKeepId
         }
         Modal.getOrCreateInstance(document.getElementById('active-keep')).show()
+        this.filterVaultKeeps()
       },
       goToProfile() {
         router.push({
@@ -56,6 +58,26 @@ export default {
           params: { id: props.keep.creatorId }
         });
       },
+      filterVaultKeeps() {
+        logger.log('filter vaultkeeps ran')
+        AppState.myVaults = AppState.myVaults.map(v => {
+          return {
+            ...v,
+            isKept: undefined
+          }
+        })
+        logger.log('I deleted ISKEPT!!!', AppState.myVaults.filter(mv => mv.isKept == true).length)
+
+        let myKeptVaults = AppState.myVaults
+        let myVaultKeeps = AppState.myVaultKeeps.filter(vk => vk.keepId != props.keep.id)
+
+        myVaultKeeps.forEach(vk => {
+          let vault = myKeptVaults.find(v => v.id == vk.vaultId)
+          vault.isKept = true
+        })
+        // logger.log('what did I do', myKeptVaults)
+        AppState.myVaults = myKeptVaults
+      }
     }
   }
 }
