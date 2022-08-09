@@ -13,7 +13,7 @@
     "
     :style="`background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.01), rgba(0, 0, 0, 0.85) ), url('${keep.img}'); background-size: cover; overflow: hidden;`"
   >
-    <img class="rounded img-fluid card-img" :src="keep.img" :alt="keep.img" />
+    <img class="img-fluid card-img" :src="keep.img" :alt="keep.img" />
 
     <div v-if="$route.name == 'Profile'" class="text my-2 mx-2 p-1 px-2 fs-6">
       <span>{{ keep.name }}</span>
@@ -50,7 +50,7 @@ export default {
           AppState.activeKeep.vaultKeepId = props.keep.vaultKeepId
         }
         Modal.getOrCreateInstance(document.getElementById('active-keep')).show()
-        this.filterVaultKeeps()
+
       },
       goToProfile() {
         router.push({
@@ -58,26 +58,7 @@ export default {
           params: { id: props.keep.creatorId }
         });
       },
-      filterVaultKeeps() {
-        logger.log('filter vaultkeeps ran')
-        AppState.myVaults = AppState.myVaults.map(v => {
-          return {
-            ...v,
-            isKept: undefined
-          }
-        })
-        logger.log('I deleted ISKEPT!!!', AppState.myVaults.filter(mv => mv.isKept == true).length)
 
-        let myKeptVaults = AppState.myVaults
-        let myVaultKeeps = AppState.myVaultKeeps.filter(vk => vk.keepId != props.keep.id)
-
-        myVaultKeeps.forEach(vk => {
-          let vault = myKeptVaults.find(v => v.id == vk.vaultId)
-          vault.isKept = true
-        })
-        // logger.log('what did I do', myKeptVaults)
-        AppState.myVaults = myKeptVaults
-      }
     }
   }
 }

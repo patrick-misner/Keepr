@@ -13,7 +13,7 @@
         <img class="left-side modal-round" :src="keep.img" :alt="keep.img" />
       </div>
 
-      <div class="col-md-6 pt-5">
+      <div class="col-md-6 pt-2 pt-md-5">
         <div
           class="d-flex flex-column justify-content-between h-100 right-side"
         >
@@ -29,7 +29,7 @@
                   <span class="fs-6">{{ keep.kept }}</span>
                 </div>
 
-                <div class="d-flex justify-content-center fs-1 py-5">
+                <div class="d-flex justify-content-center fs-1 py-2 py-md-5">
                   {{ keep.name }}
                 </div>
 
@@ -41,7 +41,7 @@
                     px-3
                   "
                 >
-                  <p class="pb-5">
+                  <p class="pb-2 pb-md-5">
                     {{ keep.description }}
                   </p>
                 </div>
@@ -68,7 +68,7 @@
             "
           >
             <div class="py-4 py-md-0">
-              <form>
+              <div class="d-flex">
                 <select
                   v-if="!keep.vaultKeepId && account.id"
                   v-model="addToVault.vaultId"
@@ -83,10 +83,19 @@
                     :value="v.id"
                     :disabled="v.isKept == true"
                   >
-                    {{ v.name }}
+                    {{ v.name }} {{ v.isKept ? " (Already added)" : "" }}
                   </option>
                 </select>
-              </form>
+
+                <button class="btn btn-danger ms-2">
+                  <i
+                    @click="deleteKeep(keep.id)"
+                    v-if="keep.creatorId == account.id && !keep.vaultKeepId"
+                    class="mdi mdi-trash-can fs-6"
+                    title="Delete the Keep"
+                  ></i>
+                </button>
+              </div>
               <button
                 v-if="keep.vaultKeepId && account.id == vault.creatorId"
                 type="button"
@@ -95,15 +104,6 @@
               >
                 Remove from Vault
               </button>
-            </div>
-
-            <div class="align-items-center">
-              <i
-                @click="deleteKeep(keep.id)"
-                v-if="keep.creatorId == account.id && !keep.vaultKeepId"
-                class="mdi mdi-trash-can fs-3 text-danger selectable"
-                title="Delete the Keep"
-              ></i>
             </div>
 
             <div @click="goToProfile" class="selectable">
@@ -130,11 +130,36 @@ import { keepsService } from "../services/KeepsService"
 import { Modal } from "bootstrap"
 import { vaultsService } from "../services/VaultsService"
 import { router } from "../router"
+import { watchEffect } from "@vue/runtime-core"
 export default {
   setup() {
     const addToVault = ref({
       vaultId: "Add to Vault",
     });
+    function filterVaultKeeps() {
+      logger.log('filter vaultkeeps ran')
+      AppState.myVaults = AppState.myVaults.map(v => {
+        return {
+          ...v,
+          isKept: false
+        }
+      })
+      // logger.log('I deleted ISKEPT!!!', AppState.myVaults.filter(mv => mv.isKept == true).length)
+
+      let myKeptVaults = AppState.myVaults
+      let myVaultKeeps = AppState.myVaultKeeps.filter(vk => vk.keepId === AppState.activeKeep.id)
+
+      myVaultKeeps.forEach(vk => {
+        let vault = myKeptVaults.find(v => v.id == vk.vaultId)
+        if (vault) {
+          vault.isKept = true
+        }
+      })
+
+    }
+    watchEffect(() => {
+      filterVaultKeeps();
+    })
     return {
       addToVault,
       keep: computed(() => AppState.activeKeep),
@@ -173,8 +198,10 @@ export default {
           addToVault.value.keepId = this.keep.id
           let vault = this.vaults.find(v => v.id == addToVault.value.vaultId)
           await vaultsService.addKeepToVault(addToVault.value)
-          Pop.toast("Added keep, " + this.keep.name + " to Vault " + vault.name, 'success')
           addToVault.value.vaultId = "Add to Vault"
+          await vaultsService.getMyVaults()
+          await vaultsService.getMyVaultKeeps();
+          Pop.toast("Added keep, " + this.keep.name + " to Vault " + vault.name, 'success')
           this.keep.kept++
         } catch (error) {
           logger.error(error)

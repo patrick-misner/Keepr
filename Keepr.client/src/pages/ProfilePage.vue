@@ -42,13 +42,13 @@
     </div>
 
     <div v-if="account.id == profile.id" class="masonry-frame mt-3 ms-md-4">
-      <div v-for="v in myVaults" :key="v.id" class="mb-4">
+      <div v-for="v in myVaults" :key="v.id" class="mb-3">
         <Vault :vault="v" />
       </div>
     </div>
 
     <div v-else class="masonry-frame mt-3 ms-md-4">
-      <div v-for="v in profileVaults" :key="v.id" class="mb-4">
+      <div v-for="v in profileVaults" :key="v.id" class="mb-3">
         <Vault :vault="v" />
       </div>
     </div>
@@ -69,7 +69,7 @@
     </div>
 
     <div class="masonry-frame mt-3 ms-md-4">
-      <div v-for="k in profileKeeps" :key="k.id" class="mb-4">
+      <div v-for="k in profileKeeps" :key="k.id" class="mb-3">
         <Keep :keep="k" />
       </div>
     </div>

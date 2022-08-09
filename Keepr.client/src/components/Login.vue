@@ -69,6 +69,7 @@ import { computed } from "@vue/reactivity";
 import { AppState } from "../AppState";
 import { AuthService } from "../services/AuthService";
 import { router } from "../router";
+import { logger } from "../utils/Logger";
 export default {
   setup() {
     return {
@@ -85,7 +86,8 @@ export default {
           name: "Profile",
           params: { id: this.account.id }
         })
-        router.go();
+        // router.go();
+        logger.log('what?')
       },
     };
   },

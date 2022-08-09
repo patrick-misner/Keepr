@@ -44,7 +44,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped lang="scss">
 .wrapper {
   position: relative;
   width: 100%;
