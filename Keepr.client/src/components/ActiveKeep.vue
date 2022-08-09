@@ -1,13 +1,15 @@
 <template>
   <div class="container-fluid">
-    <button
-      @click="modalClose"
-      type="button"
-      class="btn-close btn btn-light bg-light position-absolute top-0 end-0 p-3"
-      data-bs-dismiss="modal"
-      aria-label="Close"
-    ></button>
-    <i></i>
+    <div class="position-absolute top-0 end-0 p-2">
+      <button
+        @click="modalClose"
+        type="button"
+        class="btn-close btn btn-light bg-light"
+        data-bs-dismiss="modal"
+        aria-label="Close"
+      ></button>
+    </div>
+
     <div class="row">
       <div class="col-md-6 px-0">
         <img class="left-side modal-round" :src="keep.img" :alt="keep.img" />
@@ -46,12 +48,12 @@
                   </p>
                 </div>
 
-                <div class="d-flex justify-content-center pt-4">
+                <div
+                  v-if="keep.tags"
+                  class="d-flex justify-content-center pt-4"
+                >
                   <div class="border border-1 border-dark rounded p-1 m-2">
-                    <span class="">tag 1</span>
-                  </div>
-                  <div class="border border-1 border-dark rounded p-1 m-2">
-                    <span class="">tag 2</span>
+                    <span class="">{{ t }}</span>
                   </div>
                 </div>
               </div>
