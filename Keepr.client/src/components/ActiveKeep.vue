@@ -1,10 +1,20 @@
 <template>
   <div class="container-fluid">
+    <div class="position-absolute bottom-0 start-0 p-2">
+      <button class="btn btn-danger ms-2">
+        <i
+          @click="deleteKeep(keep.id)"
+          v-if="keep.creatorId == account.id && !keep.vaultKeepId"
+          class="mdi mdi-trash-can fs-6"
+          title="Delete the Keep"
+        ></i>
+      </button>
+    </div>
     <div class="position-absolute top-0 end-0 p-2">
       <button
         @click="modalClose"
         type="button"
-        class="btn-close btn btn-light bg-light"
+        class="btn-close btn btn-light bg-light mx-2"
         data-bs-dismiss="modal"
         aria-label="Close"
       ></button>
@@ -88,15 +98,6 @@
                     {{ v.name }} {{ v.isKept ? " (Already added)" : "" }}
                   </option>
                 </select>
-
-                <button class="btn btn-danger ms-2">
-                  <i
-                    @click="deleteKeep(keep.id)"
-                    v-if="keep.creatorId == account.id && !keep.vaultKeepId"
-                    class="mdi mdi-trash-can fs-6"
-                    title="Delete the Keep"
-                  ></i>
-                </button>
               </div>
               <button
                 v-if="keep.vaultKeepId && account.id == vault.creatorId"
