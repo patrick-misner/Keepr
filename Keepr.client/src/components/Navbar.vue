@@ -4,8 +4,8 @@
       bg-primary
       d-flex
       flex-column flex-md-row
-      justify-content-between
-      align-items-end align-items-md-center
+      justify-content-center justify-content-lg-between
+      align-items-center align-items-md-center
       elevation-2
     "
   >
@@ -18,8 +18,9 @@
         name="Home"
       />
     </router-link>
-
-    <Login />
+    <div class="align-self-end align-self-md-center">
+      <Login />
+    </div>
   </div>
 </template>
 
