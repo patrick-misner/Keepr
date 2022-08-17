@@ -16,6 +16,7 @@ CREATE TABLE
         name VARCHAR(255) NOT NULL,
         description VARCHAR(255),
         isPrivate TINYINT,
+        img VARCHAR(255) NOT NULL,
         creatorId VARCHAR(255) NOT NULL,
         FOREIGN KEY (creatorId) REFERENCES accounts(id) ON DELETE CASCADE
     ) default charset utf8 COMMENT 'vaults table';
