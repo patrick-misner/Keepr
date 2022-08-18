@@ -1,21 +1,52 @@
 <template>
   <div class="container-fluid">
-    <div class="position-absolute top-0 end-0 p-2">
+    <div class="position-absolute bottom-0 start-0 p-2"></div>
+    <div class="position-absolute top-0 end-0 p-2 d-flex flex-row">
+      <div
+        class="dropdown"
+        v-if="keep.creatorId == account.id && !keep.vaultKeepId"
+      >
+        <a
+          class="btn"
+          href="#"
+          role="button"
+          id="dropdownMenuLink"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          <i class="mdi mdi-dots-horizontal ellipses"></i>
+        </a>
+
+        <ul
+          class="dropdown-menu dropdown-menu-end"
+          aria-labelledby="dropdownMenuLink"
+        >
+          <li>
+            <a
+              @click="deleteKeep(keep.id)"
+              class="dropdown-item text-danger d-flex justify-content-between"
+              href="#"
+              >Delete<i class="mdi mdi-trash-can"> </i
+            ></a>
+          </li>
+        </ul>
+      </div>
+
       <button
         @click="modalClose"
         type="button"
-        class="btn-close btn btn-light bg-light"
+        class="btn-close btn btn-light bg-light mx-2"
         data-bs-dismiss="modal"
         aria-label="Close"
       ></button>
     </div>
 
     <div class="row">
-      <div class="col-md-6 px-0">
+      <div class="col-lg-6 px-0">
         <img class="left-side modal-round" :src="keep.img" :alt="keep.img" />
       </div>
 
-      <div class="col-md-6 pt-2 pt-md-5">
+      <div class="col-lg-6 pt-2 pt-lg-5">
         <div
           class="d-flex flex-column justify-content-between h-100 right-side"
         >
@@ -31,7 +62,7 @@
                   <span class="fs-6">{{ keep.kept }}</span>
                 </div>
 
-                <div class="d-flex justify-content-center fs-1 py-2 py-md-5">
+                <div class="d-flex justify-content-center fs-1 py-2 py-lg-5">
                   {{ keep.name }}
                 </div>
 
@@ -43,7 +74,7 @@
                     px-3
                   "
                 >
-                  <p class="pb-2 pb-md-5">
+                  <p class="pb-2 pb-lg-5">
                     {{ keep.description }}
                   </p>
                 </div>
@@ -63,13 +94,13 @@
             class="
               d-flex
               justify-content-between
-              flex-column flex-md-row
+              flex-column flex-xl-row
               pb-3
               px-0
               align-items-center
             "
           >
-            <div class="py-4 py-md-0">
+            <div class="py-4 py-xl-0">
               <div class="d-flex">
                 <select
                   v-if="!keep.vaultKeepId && account.id"
@@ -88,15 +119,6 @@
                     {{ v.name }} {{ v.isKept ? " (Already added)" : "" }}
                   </option>
                 </select>
-
-                <button class="btn btn-danger ms-2">
-                  <i
-                    @click="deleteKeep(keep.id)"
-                    v-if="keep.creatorId == account.id && !keep.vaultKeepId"
-                    class="mdi mdi-trash-can fs-6"
-                    title="Delete the Keep"
-                  ></i>
-                </button>
               </div>
               <button
                 v-if="keep.vaultKeepId && account.id == vault.creatorId"
@@ -184,11 +206,12 @@ export default {
       },
       async deleteVaultKeep(keepId) {
         try {
-          if (await Pop.confirm('Are you sure you want to remove this keep, ' + this.keep.name + ' from this vault?', 'You wont be able to revert this!', 'Yes, remove it!')) {
+          if (await Pop.confirm('Are you sure you want to remove ' + this.keep.name + ' from this Vault?', 'You wont be able to revert this!', '', 'Yes, remove it!')) {
             await vaultsService.deleteVaultKeep(this.keep.vaultKeepId)
             Modal.getOrCreateInstance(document.getElementById("active-keep")).hide()
             Pop.toast("Keep removed from vault", 'success')
             this.keep.kept--
+            await vaultsService.getMyVaultKeeps();
           }
         } catch (error) {
           logger.error(error)
@@ -243,7 +266,7 @@ export default {
   border-radius: 5px 0px 0px 5px;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 992px) {
   .left-side {
     height: 350px;
     min-height: 350px;
@@ -254,9 +277,20 @@ export default {
   .modal-round {
     border-radius: 5px 5px 0px 0px;
   }
+  .ellipses {
+    color: white;
+  }
 }
 .profile-img {
   height: 30px;
   border-radius: 5px 5px 5px 5px;
+}
+.btn {
+  box-shadow: none !important;
+}
+.btn:focus {
+  outline: none;
+  border: none;
+  box-shadow: none;
 }
 </style>

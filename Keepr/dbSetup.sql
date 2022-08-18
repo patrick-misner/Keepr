@@ -1,3 +1,5 @@
+-- Active: 1660780542740@@10.30.1.12@3306@DevDatabase
+
 CREATE TABLE
     IF NOT EXISTS accounts(
         id VARCHAR(255) NOT NULL primary key COMMENT 'primary key',
@@ -16,6 +18,7 @@ CREATE TABLE
         name VARCHAR(255) NOT NULL,
         description VARCHAR(255),
         isPrivate TINYINT,
+        img VARCHAR(255) NOT NULL,
         creatorId VARCHAR(255) NOT NULL,
         FOREIGN KEY (creatorId) REFERENCES accounts(id) ON DELETE CASCADE
     ) default charset utf8 COMMENT 'vaults table';
