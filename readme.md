@@ -26,48 +26,48 @@ Log in and go to profile
 
 ![](/Keepr.client/src/assets/img/myprofile.png)
 
-![vault](/src/assets/img/addvault.png)
+![vault](/Keepr.client/src/assets/img/addvault.png)
 
 Modal triggers
 
-![vault](/src/assets/img/privatevault.png)
+![vault](/Keepr.client/src/assets/img/privatevault.png)
 
 Sweet Alert pop notification
 
-![](/src/assets//img/Pop-notify.png)
+![](/Keepr.client/src/assets/img/Pop-notify.png)
 - - -
 ## Adding a Keep
 
 Log in and go to profile
 
-![](/src/assets//img/myprofile.png)
+![](/Keepr.client/src/assets/img/myprofile.png)
 
-![vault](/src/assets//img/addkeep.png)
+![vault](/Keepr.client/src/assets/img/addkeep.png)
 
 Modal triggers
 
-![vault](/src/assets//img/keepform.png)
+![vault](/Keepr.client/src/assets/img/keepform.png)
 
 Sweet Alert pop notification
 
-![](/src/assets//img/keep-pop.png)
+![](/Keepr.client/src/assets/img/keep-pop.png)
 
 - - -
 ## Adding a Keep to a Vault
 
 Log in and go to profile
 
-![](/src/assets//img/myprofile.png)
+![](/Keepr.client/src/assets/img/myprofile.png)
 
-![vault](/src/assets//img/addkeep.png)
+![vault](/Keepr.client/src/assets/img/addkeep.png)
 
 Modal triggers
 
-![vault](/src/assets//img/keepform.png)
+![vault](/Keepr.client/src/assets/img/keepform.png)
 
 Sweet Alert pop notification
 
-![](/src/assets//img/keep-pop.png)
+![](/Keepr.client/src/assets/img/keep-pop.png)
 
 - - -
 
