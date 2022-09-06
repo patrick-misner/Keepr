@@ -15,7 +15,7 @@
 
 ## Home Page
 
-![Home Page](/src/assets//img/homepage.png "Home Page")
+![Home Page](/src/assets/img/homepage.png "Home Page")
 
 
 
@@ -24,13 +24,13 @@
 
 Log in and go to profile
 
-![](/src/assets//img/myprofile.png)
+![](/src/assets/img/myprofile.png)
 
-![vault](/src/assets//img/addvault.png)
+![vault](/src/assets/img/addvault.png)
 
 Modal triggers
 
-![vault](/src/assets//img/privatevault.png)
+![vault](/src/assets/img/privatevault.png)
 
 Sweet Alert pop notification
 
