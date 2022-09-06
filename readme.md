@@ -24,7 +24,7 @@
 
 Log in and go to profile
 
-![](/src/assets/img/myprofile.png)
+![](/Keepr.client/src/assets/img/myprofile.png)
 
 ![vault](/src/assets/img/addvault.png)
 
