@@ -96,3 +96,20 @@ You cannot add a specific keep to your vault twice, selection is disabled.
 
 
 ---
+
+## Private Vaults
+
+On your profile page when logged in you have access to private vaults
+
+![](/Keepr.client/src/assets/img/privatevaultloggedin.png)
+
+The vault page shows the keeps contained
+
+![vault](/Keepr.client/src/assets/img/privatevaultpage.png)
+
+If you are logged out or a different user the private vault is not accessible.
+
+![vault](/Keepr.client/src/assets/img/privatevaultloggedout.png)
+
+
+
