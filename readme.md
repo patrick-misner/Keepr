@@ -15,7 +15,7 @@
 
 ## Home Page
 
-![Home Page](/src/assets/img/homepage.png "Home Page")
+![Home Page](/Keepr.client/src/assets/img/homepage.png "Home Page")
 
 
 
