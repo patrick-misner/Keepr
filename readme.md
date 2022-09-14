@@ -55,19 +55,17 @@ Sweet Alert pop notification
 - - -
 ## Adding a Keep to a Vault
 
-Log in and go to profile
+Click on a Keep on homepage or profile page.
 
-![](/Keepr.client/src/assets/img/myprofile.png)
+![](/Keepr.client/src/assets/img/addkeeptovault.png)
 
-![vault](/Keepr.client/src/assets/img/addkeep.png)
+![vault](/Keepr.client/src/assets/img/addkeeptovaultpop.png)
 
-Modal triggers
+You cannot add a specific keep to your vault twice, selection is disabled.
 
-![vault](/Keepr.client/src/assets/img/keepform.png)
+![vault](/Keepr.client/src/assets/img/addkeeptovaultdisable.png)
 
-Sweet Alert pop notification
 
-![](/Keepr.client/src/assets/img/keep-pop.png)
 
 - - -
 

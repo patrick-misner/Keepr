@@ -161,14 +161,12 @@ export default {
       vaultId: "Add to Vault",
     });
     function filterVaultKeeps() {
-      logger.log('filter vaultkeeps ran')
       AppState.myVaults = AppState.myVaults.map(v => {
         return {
           ...v,
           isKept: false
         }
       })
-      // logger.log('I deleted ISKEPT!!!', AppState.myVaults.filter(mv => mv.isKept == true).length)
 
       let myKeptVaults = AppState.myVaults
       let myVaultKeeps = AppState.myVaultKeeps.filter(vk => vk.keepId === AppState.activeKeep.id)
