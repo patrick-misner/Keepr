@@ -111,4 +111,9 @@ If you are logged out or a different user the private vault is not accessible.
 ![vault](/Keepr.client/src/assets/img/privatevaultloggedout.png)
 
 
+## Delete Keep
+
+When viewing a keep that you own, the ellipses has a drop down with a delete option
+
+![](/Keepr.client/src/assets/img/deletekeep.png)
 
