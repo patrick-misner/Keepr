@@ -95,4 +95,4 @@ You cannot add a specific keep to your vault twice, selection is disabled.
 ![vault](/Keepr.client/src/assets/img/addkeeptovaultdisable.png)
 
 
-
+---
