@@ -86,8 +86,6 @@ export default {
           name: "Profile",
           params: { id: this.account.id }
         })
-        // router.go();
-        logger.log('what?')
       },
     };
   },
