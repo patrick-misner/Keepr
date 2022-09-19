@@ -7,7 +7,7 @@
 
 - [Repo](https://github.com/patrick-misner/Keepr "Keeper Repo")
 
-- [Live](https://keeper-pm.herokuapp.com/ "Live View")
+- [Live (Heroku, may take some time to load)](https://keeper-pm.herokuapp.com/ "Live View")
 
 
 
